@@ -1,5 +1,9 @@
 name: CI
 
+env:
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
 on:
   push:
     branches: [master]
@@ -10,7 +14,7 @@ on:
 
 jobs:
   Build_and_Test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -21,6 +25,6 @@ jobs:
       - name: Install dependencies for Solution
         run: dotnet restore AdventOfCode.sln
       - name: Build
-        run: dotnet build --configuration Release --no-restore AdventOfCode.sln
+        run: dotnet build -c Release --no-restore
       - name: Test
-        run: dotnet test --no-restore --verbosity normal AdventOfCode.sln
+        run: dotnet test -c Release --no-build
