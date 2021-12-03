@@ -32,10 +32,10 @@ namespace AdventOfCode.Year2018.Day5
                 polymerOptions.Add(unit, collapsedPolymer.Count);
             }
 
-            KeyValuePair<string, int> optimalPolymer = polymerOptions.MinBy(o => o.Value).FirstOrDefault();
+            KeyValuePair<string, int> optimalPolymer = MaxByExtension.MaxBy(polymerOptions, o => o.Value).FirstOrDefault();
             return $"Part 2: {optimalPolymer.Value}";
         }
-        
+
         private static IList<char> ReactPolymer(List<char> polymer)
         {
             var index = 0;

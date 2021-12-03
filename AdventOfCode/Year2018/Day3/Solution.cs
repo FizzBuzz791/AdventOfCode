@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoreLinq.Extensions;
 using NAoCHelper;
 
 namespace AdventOfCode.Year2018.Day3
@@ -13,72 +12,80 @@ namespace AdventOfCode.Year2018.Day3
 
         public string SolvePart1()
         {
-            Claim? claimWithLargestX = Input.MaxBy(c => c.ClaimArea.X).First();
-            Claim? claimWithLargestY = Input.MaxBy(c => c.ClaimArea.Y).First();
+            Claim? claimWithLargestX = Input.MaxBy(c => c.ClaimArea.X);
+            Claim? claimWithLargestY = Input.MaxBy(c => c.ClaimArea.Y);
 
-            int maxX = claimWithLargestX.ClaimArea.X + claimWithLargestX.ClaimArea.Width;
-            int maxY = claimWithLargestY.ClaimArea.Y + claimWithLargestY.ClaimArea.Height;
-
-            int[,] fabric = new int[maxX + 1, maxY + 1];
-
-            foreach (var claim in Input)
+            if (claimWithLargestX != null && claimWithLargestY != null)
             {
-                for (int x = claim.ClaimArea.X; x < claim.ClaimArea.X + claim.ClaimArea.Width; x++)
+                int maxX = claimWithLargestX.ClaimArea.X + claimWithLargestX.ClaimArea.Width;
+                int maxY = claimWithLargestY.ClaimArea.Y + claimWithLargestY.ClaimArea.Height;
+
+                int[,] fabric = new int[maxX + 1, maxY + 1];
+
+                foreach (var claim in Input)
                 {
-                    for (int y = claim.ClaimArea.Y; y < claim.ClaimArea.Y + claim.ClaimArea.Height; y++)
+                    for (int x = claim.ClaimArea.X; x < claim.ClaimArea.X + claim.ClaimArea.Width; x++)
                     {
-                        fabric[x, y] += 1;
+                        for (int y = claim.ClaimArea.Y; y < claim.ClaimArea.Y + claim.ClaimArea.Height; y++)
+                        {
+                            fabric[x, y] += 1;
+                        }
                     }
                 }
-            }
 
-            var sharedClaims = 0;
-            for (var i = 0; i <= maxX; i++)
-            {
-                for (var j = 0; j <= maxY; j++)
+                var sharedClaims = 0;
+                for (var i = 0; i <= maxX; i++)
                 {
-                    int targetCell = fabric[i,j];
+                    for (var j = 0; j <= maxY; j++)
+                    {
+                        int targetCell = fabric[i, j];
 
-                    if (targetCell > 1)
-                        sharedClaims++;
+                        if (targetCell > 1)
+                            sharedClaims++;
+                    }
                 }
-            }
 
-            return $"Part 1: {sharedClaims}";
+                return $"Part 1: {sharedClaims}";
+            }
+            return $"Part 1: Error finding max claims";
         }
 
         public string SolvePart2()
         {
-            Claim? claimWithLargestX = Input.MaxBy(c => c.ClaimArea.X).First();
-            Claim? claimWithLargestY = Input.MaxBy(c => c.ClaimArea.Y).First();
+            Claim? claimWithLargestX = Input.MaxBy(c => c.ClaimArea.X);
+            Claim? claimWithLargestY = Input.MaxBy(c => c.ClaimArea.Y);
 
-            int maxX = claimWithLargestX.ClaimArea.X + claimWithLargestX.ClaimArea.Width;
-            int maxY = claimWithLargestY.ClaimArea.Y + claimWithLargestY.ClaimArea.Height;
-
-            int[,] fabric = new int[maxX + 1, maxY + 1];
-
-            List<int> overlapsWith = new();
-            foreach (var claim in Input)
+            if (claimWithLargestX != null && claimWithLargestY != null)
             {
-                for (int x = claim.ClaimArea.X; x < claim.ClaimArea.X + claim.ClaimArea.Width; x++)
+                int maxX = claimWithLargestX.ClaimArea.X + claimWithLargestX.ClaimArea.Width;
+                int maxY = claimWithLargestY.ClaimArea.Y + claimWithLargestY.ClaimArea.Height;
+
+                int[,] fabric = new int[maxX + 1, maxY + 1];
+
+                List<int> overlapsWith = new();
+                foreach (var claim in Input)
                 {
-                    for (int y = claim.ClaimArea.Y; y < claim.ClaimArea.Y + claim.ClaimArea.Height; y++)
+                    for (int x = claim.ClaimArea.X; x < claim.ClaimArea.X + claim.ClaimArea.Width; x++)
                     {
-                        if (fabric[x,y] == 0)
-                            fabric[x,y] = claim.Id;
-                        else
+                        for (int y = claim.ClaimArea.Y; y < claim.ClaimArea.Y + claim.ClaimArea.Height; y++)
                         {
-                            overlapsWith.Add(fabric[x,y]);
-                            overlapsWith.Add(claim.Id); // Horribly inefficient, but I'm falling behind, so this'll do.
-                            fabric[x, y] = 'X';
+                            if (fabric[x, y] == 0)
+                                fabric[x, y] = claim.Id;
+                            else
+                            {
+                                overlapsWith.Add(fabric[x, y]);
+                                overlapsWith.Add(claim.Id); // Horribly inefficient, but I'm falling behind, so this'll do.
+                                fabric[x, y] = 'X';
+                            }
                         }
                     }
                 }
+
+                List<Claim> noOverlaps = Input.Where(c => !overlapsWith.Contains(c.Id)).ToList();
+
+                return $"Part 2: {noOverlaps.First().Id}";
             }
-
-            List<Claim> noOverlaps = Input.Where(c => !overlapsWith.Contains(c.Id)).ToList();
-
-            return $"Part 2: {noOverlaps.First().Id}";
+            return $"Part 2: Error finding max claims";
         }
     }
 }

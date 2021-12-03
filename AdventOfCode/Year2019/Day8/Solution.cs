@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MoreLinq.Extensions;
 using NAoCHelper;
 
 namespace AdventOfCode.Year2019.Day8
@@ -10,7 +9,7 @@ namespace AdventOfCode.Year2019.Day8
     {
         private static int Width { get; set; } = 25;
         private static int Height { get; set; } = 6;
-        
+
         public Solution(IPuzzle puzzle) : base(puzzle, x => x.Trim('\n').ToCharArray().Select(c => int.Parse(c.ToString())).ToArray())
         {
         }
@@ -18,7 +17,7 @@ namespace AdventOfCode.Year2019.Day8
         public string SolvePart1()
         {
             Dictionary<int, List<int>> layers = CalculateLayers(Input);
-            int indexOfLeastZeroes = layers.MinBy(l => l.Value.Count(d => d == 0)).First().Key;
+            int indexOfLeastZeroes = layers.MinBy(l => l.Value.Count(d => d == 0)).Key;
             List<int>? layerWithLeastZeroes = layers[indexOfLeastZeroes];
 
             int onesCount = layerWithLeastZeroes.Count(d => d == 1);

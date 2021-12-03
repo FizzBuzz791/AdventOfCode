@@ -1,0 +1,30 @@
+name: CI
+
+env:
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+on:
+  push:
+    branches: [master]
+    paths: "AdventOfCode/**"
+  pull_request:
+    branches: [master]
+    paths: "AdventOfCode/**"
+
+jobs:
+  Build_and_Test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Install dependencies for Solution
+        run: dotnet restore AdventOfCode.sln
+      - name: Build
+        run: dotnet build -c Release --no-restore
+      - name: Test
+        run: dotnet test -c Release --no-build
