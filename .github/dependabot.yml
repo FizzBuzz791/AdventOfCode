@@ -1,32 +1,12 @@
 version: 2
 updates:
-  # 2018 - Solutions
   - package-ecosystem: nuget
-    directory: "/2018/Solutions"
+    directory: "/AdventOfCode"
     schedule:
       interval: daily
       time: "21:00"
-  # 2018 - Tests
   - package-ecosystem: nuget
-    directory: "2018/Tests"
-    schedule:
-      interval: daily
-      time: "21:00"
-  # 2019 - Solutions
-  - package-ecosystem: nuget
-    directory: "/2019/Solutions"
-    schedule:
-      interval: daily
-      time: "21:00"
-  # 2019 - Tests
-  - package-ecosystem: nuget
-    directory: "/2019/Tests"
-    schedule:
-      interval: daily
-      time: "21:00"
-  # 2019 - IntCode Machine
-  - package-ecosystem: nuget
-    directory: "/2019/IntCodeMachine/Solution"
+    directory: "/Tests"
     schedule:
       interval: daily
       time: "21:00"
