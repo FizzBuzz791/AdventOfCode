@@ -39,7 +39,29 @@ namespace AdventOfCode.Year2021.Day2
 
         public string SolvePart2()
         {
-            return $"Part 2";
+            var currentPosition = new Point(0, 0);
+            var aim = 0;
+
+            foreach (var command in Input)
+            {
+                var commandParts = command.Split(' ');
+                switch (commandParts[0])
+                {
+                    case "forward":
+                        currentPosition.X += int.Parse(commandParts[1]);
+                        currentPosition.Y += int.Parse(commandParts[1]) * aim;
+                        break;
+                    case "up":
+                        aim -= int.Parse(commandParts[1]);
+                        break;
+                    case "down":
+                        aim += int.Parse(commandParts[1]);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                };
+            }
+            return $"Part 2: ({currentPosition.X}, {currentPosition.Y}): {currentPosition.X * currentPosition.Y}";
         }
     }
 }
