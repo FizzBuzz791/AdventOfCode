@@ -30,7 +30,7 @@ namespace AdventOfCode.Year2018.Day6
                 Dictionary<Location, int> distances = allLocations.ToDictionary(location => location,
                     location => CalculateManhattanDistance(currentLocation, location));
 
-                var sortedDistances = distances.MinBy(d => d.Value);
+                var sortedDistances = MinByExtension.MinBy(distances, d => d.Value);
                 KeyValuePair<Location, int> shortestDistance = sortedDistances.First();
                 if (sortedDistances.Count() == 1 || sortedDistances.Count(s => s.Value == shortestDistance.Value) == 1)
                 {
@@ -56,7 +56,7 @@ namespace AdventOfCode.Year2018.Day6
             }
 
             List<Location> nonInfiniteLocations = allLocations.Where(l => l.ClosestLocations.All(c => !c.IsInfinite)).ToList();
-            Location? largestNonInfinite = nonInfiniteLocations.MaxBy(l => l.ClosestLocations.Count).First();
+            Location? largestNonInfinite = MaxByExtension.MaxBy(nonInfiniteLocations, l => l.ClosestLocations.Count).First();
 
             return $"The largest non-infinite area is {largestNonInfinite.ClosestLocations.Count}";
         }
@@ -98,7 +98,7 @@ namespace AdventOfCode.Year2018.Day6
 
             return $"The size of the safe region is {locationsInSafeRegion.Count}";
         }
-        
+
         private static int CalculateManhattanDistance(Location l1, Location l2) => Math.Abs(l1.X - l2.X) + Math.Abs(l1.Y - l2.Y);
     }
 }

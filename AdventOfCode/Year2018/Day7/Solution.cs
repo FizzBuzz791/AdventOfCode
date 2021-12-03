@@ -8,7 +8,7 @@ namespace AdventOfCode.Year2018.Day7
     public class Solution : BaseSolution<string[]>, ISolvable
     {
         private readonly DirectedGraph _graph;
-        
+
         public Solution(IPuzzle puzzle) : base(puzzle, x => x.Trim('\n').Split('\n'))
         {
             _graph = new DirectedGraph();
@@ -56,7 +56,7 @@ namespace AdventOfCode.Year2018.Day7
                         availableSteps.AddRange(stepsReadyToComplete.Select(s => new Node { Name = s }));
                     }
 
-                    availableSteps = availableSteps.DistinctBy(s => s.Name).ToList();
+                    availableSteps = DistinctByExtension.DistinctBy(availableSteps, s => s.Name).ToList();
                     availableSteps.Sort();
 
                     // Need to account for "in progress" steps.
