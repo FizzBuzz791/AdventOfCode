@@ -35,23 +35,23 @@ ISolvable? solution = year switch
     },
     2019 => day switch
     {
-      1 => new AdventOfCode.Year2019.Day1.Solution(puzzle),
-      2 => new AdventOfCode.Year2019.Day2.Solution(puzzle),
-      3 => new AdventOfCode.Year2019.Day3.Solution(puzzle),
-      4 => new AdventOfCode.Year2019.Day4.Solution(puzzle),
-      5 => new AdventOfCode.Year2019.Day5.Solution(puzzle),
-      6 => new AdventOfCode.Year2019.Day6.Solution(puzzle),
-      7 => new AdventOfCode.Year2019.Day7.Solution(puzzle),
-      8 => new AdventOfCode.Year2019.Day8.Solution(puzzle),
-      9 => new AdventOfCode.Year2019.Day9.Solution(puzzle),
-      10 => new AdventOfCode.Year2019.Day10.Solution(puzzle),
-      11 => new AdventOfCode.Year2019.Day11.Solution(puzzle),
-      12 => new AdventOfCode.Year2019.Day12.Solution(puzzle),
-      13 => new AdventOfCode.Year2019.Day13.Solution(puzzle),
-      14 => new AdventOfCode.Year2019.Day14.Solution(puzzle),
-      15 => new AdventOfCode.Year2019.Day15.Solution(puzzle),
-      16 => new AdventOfCode.Year2019.Day16.Solution(puzzle),
-      _ => null
+        1 => new AdventOfCode.Year2019.Day1.Solution(puzzle),
+        2 => new AdventOfCode.Year2019.Day2.Solution(puzzle),
+        3 => new AdventOfCode.Year2019.Day3.Solution(puzzle),
+        4 => new AdventOfCode.Year2019.Day4.Solution(puzzle),
+        5 => new AdventOfCode.Year2019.Day5.Solution(puzzle),
+        6 => new AdventOfCode.Year2019.Day6.Solution(puzzle),
+        7 => new AdventOfCode.Year2019.Day7.Solution(puzzle),
+        8 => new AdventOfCode.Year2019.Day8.Solution(puzzle),
+        9 => new AdventOfCode.Year2019.Day9.Solution(puzzle),
+        10 => new AdventOfCode.Year2019.Day10.Solution(puzzle),
+        11 => new AdventOfCode.Year2019.Day11.Solution(puzzle),
+        12 => new AdventOfCode.Year2019.Day12.Solution(puzzle),
+        13 => new AdventOfCode.Year2019.Day13.Solution(puzzle),
+        14 => new AdventOfCode.Year2019.Day14.Solution(puzzle),
+        15 => new AdventOfCode.Year2019.Day15.Solution(puzzle),
+        16 => new AdventOfCode.Year2019.Day16.Solution(puzzle),
+        _ => null
     },
     2020 => day switch
     {
@@ -61,6 +61,11 @@ ISolvable? solution = year switch
         4 => new AdventOfCode.Year2020.Day4.Solution(puzzle),
         5 => new AdventOfCode.Year2020.Day5.Solution(puzzle),
         6 => new AdventOfCode.Year2020.Day6.Solution(puzzle),
+        _ => null
+    },
+    2021 => day switch
+    {
+        1 => new AdventOfCode.Year2021.Day1.Solution(puzzle),
         _ => null
     },
     _ => null
