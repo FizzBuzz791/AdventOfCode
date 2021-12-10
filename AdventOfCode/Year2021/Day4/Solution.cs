@@ -8,15 +8,14 @@ namespace AdventOfCode.Year2021.Day4
 {
     public class Solution : BaseSolution<string[]>, ISolvable
     {
+        private readonly int[] numbers;
+        private readonly List<Board> boards;
+
         public Solution(IPuzzle puzzle) : base(puzzle, StringArraySelector)
         {
-        }
+            numbers = Input[0].Split(',').Select(int.Parse).ToArray();
 
-        public string SolvePart1()
-        {
-            int[] numbers = Input[0].Split(',').Select(int.Parse).ToArray();
-
-            List<Board> boards = new();
+            boards = new();
 
             int rowCounter = 1;
             while (rowCounter < Input.Length)
@@ -39,7 +38,10 @@ namespace AdventOfCode.Year2021.Day4
                     rowCounter += 5;
                 }
             }
+        }
 
+        public string SolvePart1()
+        {
             int winningScore = 0;
             int counter = 0;
             while (winningScore == 0 && counter < numbers.Length)
@@ -63,7 +65,24 @@ namespace AdventOfCode.Year2021.Day4
 
         public string SolvePart2()
         {
-            return $"Part 2: Not yet solved.";
+            int counter = 0;
+            Board? lastBoardSolved = null;
+            int lastNumber = 0;
+            while (!boards.All(b => b.HasBingo()) && counter < numbers.Length)
+            {
+                foreach (Board board in boards.Where(b => !b.HasBingo()))
+                {
+                    board.Play(numbers[counter]);
+
+                    if (board.HasBingo())
+                    {
+                        lastBoardSolved = board;
+                    }
+                }
+                lastNumber = numbers[counter];
+                counter++;
+            }
+            return $"Part 2: {lastBoardSolved?.GetScore(lastNumber) ?? 0}.";
         }
     }
 
