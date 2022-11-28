@@ -58,7 +58,7 @@ namespace AdventOfCode.Year2018.Day6
             List<Location> nonInfiniteLocations = allLocations.Where(l => l.ClosestLocations.All(c => !c.IsInfinite)).ToList();
             Location? largestNonInfinite = MaxByExtension.MaxBy(nonInfiniteLocations, l => l.ClosestLocations.Count).First();
 
-            return $"The largest non-infinite area is {largestNonInfinite.ClosestLocations.Count}";
+            return $"Part 1: {largestNonInfinite.ClosestLocations.Count}";
         }
 
         public string SolvePart2()

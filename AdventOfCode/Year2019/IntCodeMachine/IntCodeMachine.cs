@@ -11,7 +11,7 @@ namespace AdventOfCode.Year2019.IntCodeMachine
         public Queue<int> InputValues { get; }
         public List<string> Outputs { get; } = new();
         public MachineState State { get; private set; } = MachineState.Paused;
-        private int RelativeBase { get; set; }
+        public int RelativeBase { get; set; }
 
         public IntCodeMachine(BigInteger[] initialState)
         {
