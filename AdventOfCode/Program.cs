@@ -83,6 +83,7 @@ ISolvable? solution = year switch
         7 => new AdventOfCode.Year2022.Day7.Solution(puzzle),
         8 => new AdventOfCode.Year2022.Day8.Solution(puzzle),
         9 => new AdventOfCode.Year2022.Day9.Solution(puzzle),
+        10 => new AdventOfCode.Year2022.Day10.Solution(puzzle),
         _ => null
     },
     _ => null
