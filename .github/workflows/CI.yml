@@ -7,10 +7,8 @@ env:
 on:
   push:
     branches: [master]
-    paths: "AdventOfCode/**"
   pull_request:
     branches: [master]
-    paths: "AdventOfCode/**"
 
 jobs:
   Build_and_Test:
