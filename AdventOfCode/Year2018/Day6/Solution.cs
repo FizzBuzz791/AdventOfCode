@@ -30,7 +30,7 @@ namespace AdventOfCode.Year2018.Day6
                 Dictionary<Location, int> distances = allLocations.ToDictionary(location => location,
                     location => CalculateManhattanDistance(currentLocation, location));
 
-                var sortedDistances = MinByExtension.MinBy(distances, d => d.Value);
+                var sortedDistances = distances.Minima(d => d.Value);
                 KeyValuePair<Location, int> shortestDistance = sortedDistances.First();
                 if (sortedDistances.Count() == 1 || sortedDistances.Count(s => s.Value == shortestDistance.Value) == 1)
                 {
@@ -56,7 +56,7 @@ namespace AdventOfCode.Year2018.Day6
             }
 
             List<Location> nonInfiniteLocations = allLocations.Where(l => l.ClosestLocations.All(c => !c.IsInfinite)).ToList();
-            Location? largestNonInfinite = MaxByExtension.MaxBy(nonInfiniteLocations, l => l.ClosestLocations.Count).First();
+            Location? largestNonInfinite = nonInfiniteLocations.Maxima(l => l.ClosestLocations.Count).First();
 
             return $"Part 1: {largestNonInfinite.ClosestLocations.Count}";
         }
