@@ -87,6 +87,11 @@ ISolvable? solution = year switch
         11 => new AdventOfCode.Year2022.Day11.Solution(puzzle),
         _ => null
     },
+    2023 => day switch
+    {
+        1 => new AdventOfCode.Year2023.Day1.Solution(puzzle),
+        _ => null
+    },
     _ => null
 };
 
