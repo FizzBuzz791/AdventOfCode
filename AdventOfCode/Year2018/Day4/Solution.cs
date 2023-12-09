@@ -29,8 +29,7 @@ namespace AdventOfCode.Year2018.Day4
 
         public string SolvePart1()
         {
-            IGrouping<int, ActivityRecord>? sleepiestGuard =
-               MaxByExtension.MaxBy(_guardSleepRecords, g => g.ToList().Sum(s => s.TimeAsleep)).FirstOrDefault();
+            IGrouping<int, ActivityRecord> sleepiestGuard = _guardSleepRecords.Maxima(g => g.ToList().Sum(s => s.TimeAsleep)).First();
             KeyValuePair<int, int> maxMinutes = CalculateMaximumSleepMinute(sleepiestGuard);
 
             return $"Guard #{sleepiestGuard.Key}: Most asleep at 00:{maxMinutes.Key}.";
@@ -45,7 +44,7 @@ namespace AdventOfCode.Year2018.Day4
                 mostAsleep.Add(sleepRecord.Key, maxSleepMinute);
             }
 
-            (int guardId, KeyValuePair<int, int> asleepTime) = MaxByExtension.MaxBy(mostAsleep, v => v.Value.Value).SingleOrDefault();
+            (int guardId, KeyValuePair<int, int> asleepTime) = mostAsleep.Maxima(v => v.Value.Value).SingleOrDefault();
 
             return $"Guard #{guardId}: Most asleep at 00:{asleepTime.Key}.";
         }
@@ -70,8 +69,7 @@ namespace AdventOfCode.Year2018.Day4
                 }
             }
 
-            var maxBy = MaxByExtension.MaxBy(sleepingMinutes, m => m.Value);
-            return maxBy.FirstOrDefault();
+            return sleepingMinutes.Maxima(m => m.Value).FirstOrDefault();
         }
     }
 }

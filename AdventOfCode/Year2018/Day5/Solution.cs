@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoreLinq.Extensions;
+using MoreLinq;
 using NAoCHelper;
 
 namespace AdventOfCode.Year2018.Day5
@@ -32,7 +32,7 @@ namespace AdventOfCode.Year2018.Day5
                 polymerOptions.Add(unit, collapsedPolymer.Count);
             }
 
-            KeyValuePair<string, int> optimalPolymer = MaxByExtension.MaxBy(polymerOptions, o => o.Value).FirstOrDefault();
+            KeyValuePair<string, int> optimalPolymer = polymerOptions.Maxima(o => o.Value).FirstOrDefault();
             return $"Part 2: {optimalPolymer.Value}";
         }
 

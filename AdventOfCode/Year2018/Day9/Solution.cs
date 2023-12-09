@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Humanizer;
 using MoreLinq;
-using MoreLinq.Extensions;
 using NAoCHelper;
 
 namespace AdventOfCode.Year2018.Day9
@@ -18,7 +17,7 @@ namespace AdventOfCode.Year2018.Day9
         {
             int playerCount = int.Parse(Input[0]);
             _lastMarble = int.Parse(Input[6]);
-            
+
             for (var i = 0; i < playerCount; i++)
             {
                 _players.Add(new Player());
@@ -49,7 +48,7 @@ namespace AdventOfCode.Year2018.Day9
                 playerIndex = playerIndex + 1 < _players.Count ? playerIndex + 1 : 0;
             }
 
-            return $"Part 1: {FirstExtension.First(MoreEnumerable.MaxBy(_players, p => p.Score)).Score}";
+            return $"Part 1: {_players.Maxima(p => p.Score).First().Score}";
         }
 
         public string SolvePart2()
@@ -57,7 +56,7 @@ namespace AdventOfCode.Year2018.Day9
             // Reset state
             _players.ForEach(p => p.Score = 0);
             int lastMarble = _lastMarble * 100;
-            
+
             var playingCircle = new PlayingCircle(lastMarble + 1);
             var playerIndex = 0;
 
@@ -80,9 +79,9 @@ namespace AdventOfCode.Year2018.Day9
                 playerIndex = playerIndex + 1 < _players.Count ? playerIndex + 1 : 0;
             }
 
-            return $"Part 2: {FirstExtension.First(MoreEnumerable.MaxBy(_players, p => p.Score)).Score}";
+            return $"Part 2: {_players.Maxima(p => p.Score).First().Score}";
         }
-        
+
         private static void CalculateRemainingTime(IEnumerable<long> historicalTimes, int currentMarble, int totalMarbles)
         {
             double averageTime = MoreEnumerable.TakeLast(historicalTimes, 5).Average();
