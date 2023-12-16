@@ -6,6 +6,7 @@ using Shouldly;
 
 namespace Tests.Year2023.Day1
 {
+    [TestFixture]
     public class SolutionTests
     {
         [TestCase("1abc2", 12)]
