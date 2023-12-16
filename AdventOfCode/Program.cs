@@ -90,6 +90,7 @@ ISolvable? solution = year switch
     2023 => day switch
     {
         1 => new AdventOfCode.Year2023.Day1.Solution(puzzle),
+        2 => new AdventOfCode.Year2023.Day2.Solution(puzzle),
         _ => null
     },
     _ => null
@@ -97,8 +98,25 @@ ISolvable? solution = year switch
 
 if (solution != null)
 {
-    Console.WriteLine(solution.SolvePart1());
-    Console.WriteLine(solution.SolvePart2());
+    try
+    {
+        Console.WriteLine(solution.SolvePart1());
+
+    }
+    catch (NotImplementedException)
+    {
+        Console.WriteLine("No solution for Part 1");
+    }
+
+    try
+    {
+
+        Console.WriteLine(solution.SolvePart2());
+    }
+    catch (NotImplementedException)
+    {
+        Console.WriteLine("No solution for Part 2");
+    }
 }
 else
 {
