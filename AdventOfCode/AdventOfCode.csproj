@@ -10,7 +10,7 @@
     <ItemGroup>
         <PackageReference Include="Combinatorics" Version="2.0.0" />
         <PackageReference Include="Humanizer" Version="2.14.1" />
-        <PackageReference Include="MoreLinq" Version="4.1.0" />
+        <PackageReference Include="MoreLinq" Version="4.2.0" />
         <PackageReference Include="NAoCHelper" Version="1.2.16" />
     </ItemGroup>
 
